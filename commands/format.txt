@@ -1,0 +1,15 @@
+const Discord = require("discord.js");
+const config = require("../settings.json"); // SINGLE DOT MEANS "CURRENT FOLDER"; DOUBLE DOT MEANS "BACK 1 FOLDER"
+const errors = require("../utils/errors.js");
+const prefixes = require("../prefixes.json");
+
+
+module.exports.run = async (bot, message, args) => {
+
+  let prefix = prefixes[message.guild.id].prefixes;
+
+}
+
+module.exports.help = {
+  name: "cmd name"
+}
