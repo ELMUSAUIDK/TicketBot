@@ -1,0 +1,28 @@
+{
+  "name": "blank",
+  "version": "1.0.0",
+  "description": "iCourt's discord bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dectom/dectoms-discord-bot-basics.git"
+  },
+  "keywords": [
+    "dectom",
+    "discord.js"
+  ],
+  "author": "Dectom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dectom/dectoms-discord-bot-basics/issues"
+  },
+  "homepage": "https://github.com/dectom/dectoms-discord-bot-basics#readme",
+  "dependencies": {
+    "chalk": "^2.3.1",
+    "discord.js": "github:hydrabolt/discord.js",
+    "fs": "0.0.1-security"
+  }
+}

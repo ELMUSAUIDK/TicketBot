@@ -1,0 +1,63 @@
+const Discord = require("discord.js");
+const auth = require("../utils/auth.json");
+
+module.exports.run = async (bot, message, args) => {
+  if (message.channel.name != "support" && message.channel.name != "bot-test") {
+    message.delete();
+    message.channel.send("Commands only work in <#429857972630585347>, " + message.author).then(m => m.delete(5000));
+    console.log(message.author);
+    return;
+    let ticketCategory = message.guild.channels.find(`name`, `Tickets`);
+    if (!ticketCategory) {
+      let noCategory = new Discord.RichEmbed()
+        .setTitle("Error!")
+        .addField("Missing Category:", "Tickets")
+        .setFooter(auth.footer);
+    } else {
+      let support = message.guild.roles.find('name', 'Support');
+      if (!support) {
+        message.channel.send("Please create a role called 'Support'");
+        console.log("Error: 'Support' role not found! Cancelling ticket creation");
+      } else {
+        let currentTime = moment().unix();
+        message.guild.channels.create("ticket-" + `${currentTime}`), {
+          type: `text`,
+          overwrites: [{
+              id: message.guild.id,
+              denied: ['VIEW_CHANNEL', 'SEND_MESSAGES']
+            },
+            {
+              id: message.author.id,
+              allowed: ['VIEW_CHANNEL', 'SEND_MESSAGES']
+            },
+            {
+              id: support.id,
+              allowed: ['VIEW_CHANNEL', 'SEND_MESSAGES']
+            },
+          ],
+          parent: category2.id,
+          reason: `Ticket channel created by ${msg.author.username}`
+          }
+        }).then(cnl => {
+        let createdEmbed = new Discord.RichEmbed()
+          .setTitle("Ticket")
+          .setDescription("A new ticket was made")
+
+        let logchannel = message.guild.channels.find(`name`, "logs");
+        if (!logchannel) return message.channel.send(":x: Error: I couldn't find a log (#logs) channel. :x:");
+        logchannel.send(createdEmbed);
+      });
+      let newTicketEmbed = new Discord.RichEmbed()
+        .setTitle(`Ticket`)
+        .setDescription("Thank you for creating a ticket! We'll be with you in a few minutes. While you're waiting, please give us some information on your inquire.")
+        .setTimestamp()
+        .setFooter(auth.footer);
+
+      cnl.send(embed);
+      cnl.send("<@&429856344007376914> | New ticket!");
+  }
+}
+
+module.exports.help = {
+  name: "new"
+}
